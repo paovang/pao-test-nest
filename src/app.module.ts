@@ -10,7 +10,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
       type: 'postgres',
       host: 'database-pao.chq8822w4ryp.ap-southeast-1.rds.amazonaws.com',
       port: 5432,
-      username: 'postgres',
+      username: 'pao',
       password: 'p123456v',
       database: 'pao_db_nest',
       entities: [User], // Add your entities here
