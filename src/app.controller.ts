@@ -1,5 +1,5 @@
 import { User } from './models/user.model';
-import { Controller, Get } from '@nestjs/common';
+import { Body, Controller, Get, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { Repository } from 'typeorm';
@@ -14,8 +14,20 @@ export class AppController {
 
   @Get()
   getHello(): Promise<User[]> {
-    return this.userRepository.find();
+    return this.userRepository.find({
+      order: {
+        id: 'DESC', 
+      },
+    });
 
     // return this.appService.getHello();
+  }
+
+  @Post()
+  createUser(@Body() body): Promise<User> {
+    const { username, email } = body;
+    
+    const newUser = this.userRepository.create({ username, email });
+    return this.userRepository.save(newUser);
   }
 }
