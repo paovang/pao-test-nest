@@ -1,5 +1,5 @@
 import { User } from './models/user.model';
-import { Body, Controller, Get, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { AppService } from './app.service';
 import { Repository } from 'typeorm';
@@ -18,6 +18,13 @@ export class AppController {
       order: {
         id: 'DESC', 
       },
+    });
+  }
+
+  @Get('user/:id')
+  async getUserById(@Param('id') id: number): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { id },
     });
   }
 
