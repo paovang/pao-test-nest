@@ -21,7 +21,7 @@ export class AppController {
     });
   }
 
-  @Get('users/:id')
+  @Get('user/:id')
   async getUserById(@Param('id') id: number): Promise<User | undefined> {
     return this.userRepository.findOne({
       where: { id },
