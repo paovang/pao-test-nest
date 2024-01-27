@@ -28,6 +28,13 @@ export class AppController {
     });
   }
 
+  @Get('list/user/:id')
+  async getListUserById(@Param('id') id: number): Promise<User | undefined> {
+    return this.userRepository.findOne({
+      where: { id },
+    });
+  }
+
   @Post('add/user')
   createUser(@Body() body): Promise<User> {
     const { username, email } = body;
