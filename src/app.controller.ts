@@ -12,18 +12,16 @@ export class AppController {
     private userRepository: Repository<User>
   ) {}
 
-  @Get()
+  @Get('list/users')
   getHello(): Promise<User[]> {
     return this.userRepository.find({
       order: {
         id: 'DESC', 
       },
     });
-
-    // return this.appService.getHello();
   }
 
-  @Post()
+  @Post('add/user')
   createUser(@Body() body): Promise<User> {
     const { username, email } = body;
     
